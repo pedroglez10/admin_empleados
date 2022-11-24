@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="submitForm($event)">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" formControlName="name" autocomplete="off">
+                    <mat-error>Este campo es requerido</mat-error>
+                </mat-form-field>
+            </div>
+            
+            <div class="col-md-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Parentesco</mat-label>
+                    <input matInput type="text" formControlName="relationship" autocomplete="off">
+                    <mat-error>Este campo es requerido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha contratación</mat-label>
+                    <input matInput type="date" formControlName="birth_date">
+                    <mat-error>Este campo es requerido</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <label>Sexo: </label>
+                <mat-radio-group formControlName="gender">
+                    <mat-radio-button value="M">Masculino</mat-radio-button>
+                    <mat-radio-button value="F">Femenino</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="form.invalid" >Guardar</button>
+        <button mat-stroked-button color="warn" type="button" (click)="Clear()">Limpiar</button>
+        <button mat-stroked-button type="button" (click)="goBack()">Regresar</button>
+    </mat-card-actions>
+</form>

@@ -1,0 +1,37 @@
+<mat-card-actions align="end">
+    <button mat-raised-button color="primary" routerLink="create/{{id_employee}}">Nuevo</button>
+    <a mat-raised-button routerLink="">Empleados</a>
+</mat-card-actions>
+<mat-card-content>
+    <div class="row">
+        <table class="table table-bordered">
+            <caption>Lista de beneficiarios</caption>
+            <thead>
+                <tr class="bg-secondary">
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Parentesco</th>
+                <th>Fecha nacimiento</th>
+                <th>Sexo</th>
+                <th></th>
+                </tr>
+            </thead>  
+            <tbody>
+                <tr *ngFor="let beneficiary of beneficiaries; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{beneficiary.name}}</td>
+                    <td>{{beneficiary.relationship}}</td>
+                    <td>{{beneficiary.birth_date | date:'dd/MM/yyyy'}}</td>
+                    <td>{{beneficiary.gender == 'M' ? 'Masculino' : 'Femenino'}}</td>
+                    <td class="text-center">
+                        <button type="button" mat-mini-fab color="primary" [routerLink]="['edit', id_employee, beneficiary.id]"><mat-icon>edit</mat-icon></button>
+                        <button type="button" mat-mini-fab color="warn" (click)="removeBeneficiary(beneficiary.id)"><mat-icon>delete</mat-icon></button>
+                    </td>
+                </tr>
+                <tr *ngIf="beneficiaries.length==0">
+                    <td colspan="6">No cuenta con beneficiarios</td>
+                </tr>
+            </tbody>              
+        </table>
+    </div>
+</mat-card-content>

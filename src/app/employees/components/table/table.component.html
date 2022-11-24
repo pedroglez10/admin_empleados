@@ -1,0 +1,41 @@
+<mat-card>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" routerLink="create">Nuevo</button>
+    </mat-card-actions>
+    <mat-card-content>
+        <div class="row">
+            <table class="table table-bordered">
+                <caption>Lista de empleados</caption>
+                <thead>
+                  <tr class="bg-secondary">
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Puesto</th>
+                    <th>Salario</th>
+                    <th>Estatus</th>
+                    <th>Fecha contratación</th>
+                    <th></th>
+                  </tr>
+                </thead>  
+                <tbody>
+                    <tr *ngFor="let employee of employees; index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.role}}</td>
+                        <td>{{employee.salary | currency}}</td>
+                        <td>{{employee.status == 1 ? 'Activo' : 'Inactivo'}}</td>
+                        <td>{{employee.hire_date | date:'dd/MM/yyyy'}}</td>
+                        <td class="text-center">
+                            <button type="button" mat-mini-fab color="primary" [routerLink]="['edit', employee.id]"><mat-icon>edit</mat-icon></button>
+                            <button type="button" mat-mini-fab color="warn" (click)="removeEmployee(employee.id)"><mat-icon>delete</mat-icon></button>
+                            <a mat-raised-button [routerLink]="['beneficiaries', employee.id]">Beneficiarios</a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="employees.length==0">
+                        <td colspan="7">No hay registros</td>
+                    </tr>
+                </tbody>              
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>
